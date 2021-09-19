@@ -14,7 +14,7 @@ class MyDB(object):
         if os.path.exists(location):
             self._load()
         else:
-            self.db = dict
+            self.db = str()
         return True
 
     def _load(self):
