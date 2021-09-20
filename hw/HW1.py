@@ -89,31 +89,44 @@ class Orders:
 
 
 # Fill classes with information
-clients = [Client('Kane', '89291938192'), Client('Sasha', '8168472364'), Client('Egor', '82313421356')]
-drivers = [Drivers('Андрей', 'y 374 kk', '+79135353208'), Drivers('Вася', 'д 334 оо', '+79132346408'),
+clients = [Client('Kane', '89291938192'),
+           Client('Sasha', '8168472364'),
+           Client('Egor', '82313421356')]
+
+drivers = [Drivers('Андрей', 'y 374 kk', '+79135353208'),
+           Drivers('Вася', 'д 334 оо', '+79132346408'),
            Drivers('Петр', 'а 178 ва', '+79135134238')]
-cars = [Cars('Toyota', "y 374 kk", 'blue'), Cars('Hundai', 'д 334 оо', 'white'),
+
+cars = [Cars('Toyota', "y 374 kk", 'blue'),
+        Cars('Hundai', 'д 334 оо', 'white'),
         Cars('Chevrolet', 'а 178 ва', 'white')]
 
-driver_loc = [DriverLocation("Андрей", 'Вахитовский'), DriverLocation("Вася", 'Приволжский'),
+driver_loc = [DriverLocation("Андрей", 'Вахитовский'),
+              DriverLocation("Вася", 'Приволжский'),
               DriverLocation("Петр", 'Авиастрой')]
+
 order = [Orders(dt.today().strftime("%Y-%m-%d"), 'Андрей', 'Kane'),
          Orders(dt.today().strftime("%Y-%m-%d"), 'Вася', 'Sasha'),
          Orders(dt.today().strftime("%Y-%m-%d"), 'Петр', 'Egor')]
 db = {
     'clients': list({"client": client.name,
-                     "number_of_phone": client.phon_numb} for client in clients),
+                     "number_of_phone": client.phon_numb}
+                    for client in clients),
     'drivers': list({"driver": driver.name,
                      "car_number": driver.car_number,
-                     'phone_number': driver.phone_number} for driver in drivers),
+                     'phone_number': driver.phone_number}
+                    for driver in drivers),
     'cars': list({'mark': car.mark,
                   'nmb': car.numb,
-                  'color': car.color} for car in cars),
+                  'color': car.color}
+                 for car in cars),
     'driver_location': list({'driver': dr.driver,
-                             'location': dr.district} for dr in driver_loc),
+                             'location': dr.district}
+                            for dr in driver_loc),
     'orders': list({"date": order.date,
                     'driver': order.driver,
-                    'client': order.client} for order in order)
+                    'client': order.client}
+                   for order in order)
 }
 
 # Saving like 1 json object
