@@ -1,0 +1,81 @@
+{
+    "clients": [
+        {
+            "client": "Kane",
+            "number_of_phone": "89291938192"
+        },
+        {
+            "client": "Sasha",
+            "number_of_phone": "8168472364"
+        },
+        {
+            "client": "Egor",
+            "number_of_phone": "82313421356"
+        }
+    ],
+    "drivers": [
+        {
+            "driver": "Андрей",
+            "car_number": "y 374 kk",
+            "phone_number": "+79135353208"
+        },
+        {
+            "driver": "Вася",
+            "car_number": "д 334 оо",
+            "phone_number": "+79132346408"
+        },
+        {
+            "driver": "Петр",
+            "car_number": "а 178 ва",
+            "phone_number": "+79135134238"
+        }
+    ],
+    "cars": [
+        {
+            "mark": "Toyota",
+            "nmb": "y 374 kk",
+            "color": "blue"
+        },
+        {
+            "mark": "Hundai",
+            "nmb": "д 334 оо",
+            "color": "white"
+        },
+        {
+            "mark": "Chevrolet",
+            "nmb": "а 178 ва",
+            "color": "white"
+        }
+    ],
+    "driver_location": [
+        {
+            "driver": "Андрей",
+            "location": "Вахитовский"
+        },
+        {
+            "driver": "Вася",
+            "location": "Приволжский"
+        },
+        {
+            "driver": "Петр",
+            "location": "Авиастрой"
+        }
+    ],
+    "orders": [
+        {
+            "date": "2021-09-20",
+            "driver": "Андрей",
+            "client": "Kane"
+        },
+        {
+            "date": "2021-09-20",
+            "driver": "Вася",
+            "client": "Sasha"
+        },
+        {
+            "date": "2021-09-20",
+            "driver": "Петр",
+            "client": "Egor"
+        }
+    ]
+}
