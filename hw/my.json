@@ -1,8 +1,0 @@
-{
-    "db": {
-        "drivers": "[<__main__.Drivers object at 0x000001E5CAF8C670>, <__main__.Drivers object at 0x000001E5CAF8C610>, <__main__.Drivers object at 0x000001E5CAF8C340>]",
-        "cars": "[<__main__.Cars object at 0x000001E5CAF8C670>, <__main__.Cars object at 0x000001E5CAF8C610>, <__main__.Cars object at 0x000001E5CAF8C340>]",
-        "location": "[<__main__.DriverLocation object at 0x000001E5CAF8C670>, <__main__.DriverLocation object at 0x000001E5CAF8C610>, <__main__.DriverLocation object at 0x000001E5CAF8C340>]",
-        "car_mark": "[<__main__.CarMark object at 0x000001E5CAF8C670>, <__main__.CarMark object at 0x000001E5CAF8C610>, <__main__.CarMark object at 0x000001E5CAF8C340>]"
-    }
-}

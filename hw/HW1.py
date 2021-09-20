@@ -1,6 +1,6 @@
 import json
 import os
-import codecs
+from datetime import datetime as dt
 
 
 # DataBase:
@@ -37,24 +37,14 @@ class MyDB(object):
             print("[X] Error Saving Values to Database : " + str(e))
             return False
 
-    def get(self, key):
-        try:
-            return self.db[key]
-        except KeyError:
-            print("No Value Can Be Found for " + str(key))
-            return False
-
-    def delete(self, key):
-        if not key in self.db:
-            return False
-        del self.db[key]
-        self.dumpdb()
-        return True
-
-    def resetdb(self):
-        self.db = {}
-        self.dumpdb()
-        return True
+    def get(self, client_name, date):
+        with open(self.location, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        result = []
+        for elem in data['orders']:
+            if elem['client'] == client_name and elem['date'] == date:
+                result.append(elem)
+                return result
 
 
 # Describing each entity with a class
@@ -64,6 +54,12 @@ class Drivers:
         self.name = name
         self.car_number = car_number
         self.phone_number = phone_number
+
+
+class Client:
+    def __init__(self, name, phone_numb):
+        self.name = name
+        self.phon_numb = phone_numb
 
 
 class Cars:
@@ -85,17 +81,44 @@ class CarMark:
         self.car_mark = car_mark
 
 
-# Fill classes with information
+class Orders:
+    def __init__(self, date, driver, client):
+        self.date = date
+        self.driver = driver
+        self.client = client
 
-db = {'drivers': str([Drivers('Андрей', 'y 374 kk', '+79135353208'), Drivers('Вася', 'д 334 оо', '+79132346408'),
-                      Drivers('Петр', 'а 178 ва', '+79135134238')]),
-      'cars': str([Cars('Toyota', "y 374 kk", 'blue'), Cars('Hundai', 'д 334 оо', 'white'),
-                   Cars('Chevrolet', 'а 178 ва', 'white')]),
-      'location': str([DriverLocation("Андрей", 'Вахитовский'), DriverLocation("Вася", 'Приволжский'),
-                       DriverLocation("Петр", 'Авиастрой')]),
-      'car_mark': str([CarMark('1', 'Toyota'), CarMark('2', 'Hundai'), CarMark('2', 'Chevrolet')])}
+
+# Fill classes with information
+clients = [Client('Kane', '89291938192'), Client('Sasha', '8168472364'), Client('Egor', '82313421356')]
+drivers = [Drivers('Андрей', 'y 374 kk', '+79135353208'), Drivers('Вася', 'д 334 оо', '+79132346408'),
+           Drivers('Петр', 'а 178 ва', '+79135134238')]
+cars = [Cars('Toyota', "y 374 kk", 'blue'), Cars('Hundai', 'д 334 оо', 'white'),
+        Cars('Chevrolet', 'а 178 ва', 'white')]
+
+driver_loc = [DriverLocation("Андрей", 'Вахитовский'), DriverLocation("Вася", 'Приволжский'),
+              DriverLocation("Петр", 'Авиастрой')]
+order = [Orders(dt.today().strftime("%Y-%m-%d"), 'Андрей', 'Kane'),
+         Orders(dt.today().strftime("%Y-%m-%d"), 'Вася', 'Sasha'),
+         Orders(dt.today().strftime("%Y-%m-%d"), 'Петр', 'Egor')]
+db = {
+    'clients': list({"client": client.name,
+                     "number_of_phone": client.phon_numb} for client in clients),
+    'drivers': list({"driver": driver.name,
+                     "car_number": driver.car_number,
+                     'phone_number': driver.phone_number} for driver in drivers),
+    'cars': list({'mark': car.mark,
+                  'nmb': car.numb,
+                  'color': car.color} for car in cars),
+    'driver_location': list({'driver': dr.driver,
+                             'location': dr.district} for dr in driver_loc),
+    'orders': list({"date": order.date,
+                    'driver': order.driver,
+                    'client': order.client} for order in order)
+}
+
 # Saving like 1 json object
-data = {'db': db}
 if __name__ == '__main__':
-    database = MyDB("my.json", data)
+    database = MyDB("my.json", db)
     database.dumpdb()
+    # получение по дате
+    print(database.get('Egor', "2021-09-20"))
