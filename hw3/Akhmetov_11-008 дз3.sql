@@ -1,8 +1,8 @@
--- 1 «¿ƒ¿Õ»≈
+-- 1 TASK
 
 SELECT * FROM flights WHERE departure_airport = 'KZN' AND arrival_airport = 'MQF';
 
--- 2 «¿ƒ¿Õ»≈
+-- 2 TASK
 
 SELECT *
 FROM flights
@@ -10,7 +10,7 @@ WHERE departure_airport = ANY(ARRAY['SVO','VKO','DME'])
 AND actual_departure = '"2017-07-30 18:10:00+03"'
 AND actual_arrival - actual_departure = INTERVAL '00:25:00';
 
--- 3 «¿ƒ¿Õ»≈
+-- 3 TASK
 
 SELECT * FROM flights fly JOIN airports_data aid
 ON (fly.departure_airport = aid.airport_code AND aid.timezone = 'Asia/Vladivostok')
